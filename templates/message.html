@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forum - {{ message['title'] }}</title>
+</head>
+<body>
+	<h1>{{ message['title'] }}</h1>
+	<p>{{ message['content'] }}</p>
+	<hr>
+	{% for reply in replies %}
+		<div style="margin-left: 20px;">
+			<p>{{ reply['content'] }}</p>
+			<p><small>Posté le {{ reply['created_at'] }}</small></p>
+		</div>
+		{% if reply['parent_id'] %}
+			{% for subreply in replies if subreply['parent_id'] == reply['id'] %}
+				<div style="margin-left: 40px;">
+					<p>{{ subreply['content'] }}</p>
+					<p><small>Posté le {{ subreply['created_at'] }}</small></p>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+	<hr>
+	<a href="{{ url_for('create_message', parent_id=message['id']) }}">Répondre</a>
+	<a href="{{ url_for('index') }}">Retour</a>
+</body>
+</html>
+

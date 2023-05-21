@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nouveau message</title>
+  </head>
+  <body>
+    <h1>Nouveau message</h1>
+    <form action="{{ url_for('create_message') }}" method="post">
+      <label for="contenu">Contenu :</label><br>
+      <textarea id="contenu" name="contenu" rows="10" cols="50"></textarea><br>
+      <input type="submit" value="Publier">
+    </form>
+  </body>
+</html>
+

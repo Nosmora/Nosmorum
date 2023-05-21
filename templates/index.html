@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forum</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+  </head>
+ 
+<body>
+  <h1>Forum - Messages Racines</h1>
+  <ul>
+    {% for message in messages %}
+      <li>
+        <strong>{{ message.title }}</strong><br>
+        {{ message.content }}<br>
+        <a href="{{ url_for('view_thread', thread_id=message.id) }}">Voir les réponses</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
+  <a href="{{ url_for('create_message') }}">Nouveau message</a>
+</body>
+</html>
+
